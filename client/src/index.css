@@ -1,0 +1,140 @@
+/* ─── Google Font ─────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties / Design Tokens ──────── */
+:root {
+  --brand-orange:  #FF8C42;
+  --brand-pink:    #FF59B6;
+  --brand-purple:  #8B5CF6;
+  --brand-yellow:  #FFDB58;
+  --brand-dark:    #1A1A1A;
+
+  --ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Base ────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: 'Arimo', sans-serif;
+  background: #ffffff;
+  color: var(--brand-dark);
+  min-height: 100dvh;
+}
+
+::selection {
+  background: var(--brand-dark);
+  color: #fff;
+}
+
+/* ─── Loading Skeleton pulse ──────────────────────── */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.skeleton {
+  @apply bg-gray-100 rounded animate-pulse;
+  animation: skeleton-pulse 1.6s ease-in-out infinite;
+}
+
+/* ─── Fade-in entrance ────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.45s var(--ease-smooth) both;
+}
+
+/* ─── Subtle scale-in for cards ──────────────────── */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.35s var(--ease-smooth) both;
+}
+
+/* ─── Reading progress bar gradient ─────────────── */
+.reading-progress {
+  background: linear-gradient(90deg, var(--brand-purple), var(--brand-pink));
+}
+
+/* ─── Premium scroll bar ──────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-purple); }
+
+/* ─── Prose / rich-text styles ───────────────────── */
+.browser-css h1 { font-size: 2rem; font-weight: 900; margin-bottom: 1rem; }
+.browser-css h2 { font-size: 1.5rem; font-weight: 900; margin: 2rem 0 1rem; }
+.browser-css h3 { font-size: 1.25rem; font-weight: 700; margin: 1.5rem 0 0.75rem; }
+.browser-css p  { font-size: 1.15rem; line-height: 1.75; margin-bottom: 1.5rem; color: #374151; }
+.browser-css a  { color: var(--brand-purple); text-decoration: underline; }
+.browser-css blockquote {
+  border-left: 4px solid var(--brand-purple);
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  background: #f9fafb;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: #6b7280;
+}
+.browser-css ul  { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+.browser-css ol  { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.5rem; }
+.browser-css li  { font-size: 1.1rem; line-height: 1.7; margin-bottom: 0.5rem; }
+.browser-css img { border-radius: 0.75rem; width: 100%; margin: 1.5rem 0; }
+.browser-css pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ─── Glassmorphism utility ──────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ─── Brand gradient text ─────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Tag / badge ─────────────────────────────────── */
+.tag-pill {
+  @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold
+         bg-gray-100 text-gray-600 border border-gray-200
+         hover:border-brand-purple hover:text-brand-purple
+         transition-colors duration-200 cursor-pointer;
+}
+
+/* ─── Focus ring ─────────────────────────────────── */
+.focus-brand:focus-visible {
+  outline: 2px solid var(--brand-purple);
+  outline-offset: 2px;
+}
