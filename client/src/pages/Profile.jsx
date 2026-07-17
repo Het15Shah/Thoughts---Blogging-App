@@ -170,7 +170,7 @@ function Profile() {
                 <p className="text-gray-300 font-bold">No stories published yet.</p>
               </div>
             ) : (
-              <div className="flex flex-col gap-0">
+              <div className="flex flex-col gap-6">
                 {posts.map((post) => <PostCard key={post.$id} {...post} />)}
               </div>
             )}

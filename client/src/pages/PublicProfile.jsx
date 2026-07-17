@@ -81,7 +81,7 @@ function PublicProfile() {
           <h2 className="text-2xl font-black text-brand-dark mb-8">
             Stories by {authorName} ({posts.length})
           </h2>
-          <div className="flex flex-col gap-0 border-t border-gray-100">
+          <div className="flex flex-col gap-6 border-t border-gray-100 pt-8">
             {posts.length === 0 ? (
               <p className="text-gray-500 italic py-8">This author hasn't published any stories yet.</p>
             ) : (

@@ -86,7 +86,7 @@ function AllPosts() {
             </p>
           </div>
         ) : (
-          <div className="flex flex-col gap-0">
+          <div className="flex flex-col gap-6">
             {filtered.map((post) => (
               <PostCard key={post.$id} {...post} />
             ))}

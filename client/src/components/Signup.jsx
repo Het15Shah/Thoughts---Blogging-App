@@ -29,10 +29,18 @@ function Signup() {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen px-4 pt-[72px] bg-gray-50/50 -mt-[72px]">
+    <div className="w-full min-h-screen bg-gray-50/50 -mt-[72px]">
       
       {/* Curvy Wave Header */}
-      <div className="absolute top-0 left-0 w-full bg-brand-purple pt-[120px] pb-24 overflow-hidden z-0">
+      <div className="bg-brand-purple relative pt-[120px] pb-24 mb-10 overflow-hidden z-0">
+        <div className="max-w-7xl mx-auto px-4 relative z-10 animate-fade-in-up text-center">
+          <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none mb-3 drop-shadow-md">
+            Join Thoughts
+          </h1>
+          <p className="text-purple-100 font-semibold text-lg max-w-lg mx-auto">
+            Create an account to start writing and engaging with stories.
+          </p>
+        </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] transform translate-y-[1px]">
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[40px] md:h-[70px]">
             <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.06,158.51,122.5,224.89,105.5Z" fill="#F9FAFB"></path>
@@ -40,7 +48,7 @@ function Signup() {
         </div>
       </div>
 
-      <div className="w-full max-w-md animate-fade-in-up relative z-10">
+      <div className="w-full max-w-md mx-auto animate-fade-in-up relative z-10">
 
         {/* Card */}
         <div className="p-8 sm:p-10">
@@ -50,7 +58,6 @@ function Signup() {
             <div className="w-14 h-14 mb-4 rounded-2xl bg-brand-purple/10 flex items-center justify-center shadow-sm">
               <Logo className="w-9 h-9" />
             </div>
-            <h1 className="text-2xl font-black text-brand-dark tracking-tight">Create your account</h1>
             <p className="text-sm text-gray-500 font-semibold mt-1">
               Already a member?&nbsp;
               <Link to="/login" className="text-brand-purple hover:text-purple-700 transition-colors underline underline-offset-2">
