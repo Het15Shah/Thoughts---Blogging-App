@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, PostCard } from '../components';
-import AppwriteService from '../appwrite/conf';
+import apiService from '../api/conf';
 
 function AllPosts() {
   const [posts,   setPosts]   = useState([]);
@@ -8,7 +8,7 @@ function AllPosts() {
   const [search,  setSearch]  = useState('');
 
   useEffect(() => {
-    AppwriteService.getallPosts().then((res) => {
+    apiService.getallPosts().then((res) => {
       if (res) setPosts(res.documents);
       setLoading(false);
     });

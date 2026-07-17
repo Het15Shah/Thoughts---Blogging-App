@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../store/authSlice';
-import authService from '../../appwrite/auth';
+import authService from '../../api/auth';
 
 function LogoutBtn({ className = '' }) {
   const dispatch  = useDispatch();

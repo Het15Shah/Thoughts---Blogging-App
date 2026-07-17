@@ -1,5 +1,6 @@
-// This file replaces the Appwrite SDK with fetch calls to our new Node/Express API
-const API_URL = 'http://localhost:5000/api';
+// This file replaces the API SDK with fetch calls to our new Node/Express API
+import config from '../config/config';
+const API_URL = config.backendUrl;
 
 export class Service {
   
@@ -16,7 +17,7 @@ export class Service {
       if (!response.ok) return false;
       return await response.json();
     } catch (error) {
-      console.log("Appwrite serive :: createPost :: error", error);
+      console.log("API service :: createPost :: error", error);
       return false;
     }
   }
@@ -34,7 +35,7 @@ export class Service {
       if (!response.ok) return false;
       return await response.json();
     } catch (error) {
-      console.log("Appwrite serive :: updatePost :: error", error);
+      console.log("API service :: updatePost :: error", error);
       return false;
     }
   }
@@ -50,7 +51,7 @@ export class Service {
       if (!response.ok) return false;
       return true;
     } catch (error) {
-      console.log("Appwrite serive :: deletePost :: error", error);
+      console.log("API service :: deletePost :: error", error);
       return false;
     }
   }
@@ -61,7 +62,7 @@ export class Service {
       if (!response.ok) return false;
       return await response.json();
     } catch (error) {
-      console.log("Appwrite serive :: getPost :: error", error);
+      console.log("API service :: getPost :: error", error);
       return false;
     }
   }
@@ -72,7 +73,7 @@ export class Service {
       if (!response.ok) return false;
       return await response.json(); // returns { documents: [...] }
     } catch (error) {
-      console.log("Appwrite serive :: getallPosts :: error", error);
+      console.log("API service :: getallPosts :: error", error);
       return false;
     }
   }
@@ -90,7 +91,7 @@ export class Service {
       if (!response.ok) return false;
       return await response.json(); // returns { $id: '/uploads/...jpg' }
     } catch (error) {
-      console.log("Appwrite serive :: uploadFile :: error", error);
+      console.log("API service :: uploadFile :: error", error);
       return false;
     }
   }
@@ -105,7 +106,7 @@ export class Service {
       });
       return response.ok;
     } catch (error) {
-      console.log("Appwrite serive :: deleteFile :: error", error);
+      console.log("API service :: deleteFile :: error", error);
       return false;
     }
   }
@@ -113,7 +114,7 @@ export class Service {
   getFilePreview(fileId) {
     if (!fileId) return '';
     // fileId is already a relative path like '/uploads/image.jpg' from our API
-    return `http://localhost:5000${fileId}`;
+    return `${config.backendUrl.replace('/api', '')}${fileId}`;
   }
 }
 

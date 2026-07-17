@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import AppwriteService from "../appwrite/conf";
+import apiService from "../api/conf";
 import { Container, PostCard, Logo } from "../components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import authService from "../appwrite/auth";
+import authService from "../api/auth";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -13,7 +13,7 @@ function Home() {
   const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    AppwriteService.getallPosts().then((posts) => {
+    apiService.getallPosts().then((posts) => {
       if (posts) setPosts(posts.documents);
     });
     if (authStatus) {

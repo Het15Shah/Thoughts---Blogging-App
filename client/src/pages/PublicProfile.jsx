@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, PostCard } from "../components";
-import AppwriteService from "../appwrite/conf";
-import authService from "../appwrite/auth";
+import apiService from "../api/conf";
+import authService from "../api/auth";
 import { useSelector } from "react-redux";
 
 function PublicProfile() {
@@ -13,7 +13,7 @@ function PublicProfile() {
   const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    AppwriteService.getallPosts().then((postsResponse) => {
+    apiService.getallPosts().then((postsResponse) => {
       if (postsResponse) {
         const userPosts = postsResponse.documents.filter(
           (post) => (post.authorName || 'Contributor') === authorName

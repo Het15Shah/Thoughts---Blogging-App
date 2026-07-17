@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Button, Input, PostCard } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
-import authService from '../appwrite/auth';
-import AppwriteService from '../appwrite/conf';
+import authService from '../api/auth';
+import apiService from '../api/conf';
 import { login } from '../store/authSlice';
 
 function Profile() {
@@ -20,7 +20,7 @@ function Profile() {
     setName(userData.name || '');
 
     // Fetch user posts
-    AppwriteService.getallPosts().then((res) => {
+    apiService.getallPosts().then((res) => {
       if (res?.documents) {
         const mine = res.documents.filter((p) => (p.userId || p.authorId) === userData.$id);
         setPosts(mine);

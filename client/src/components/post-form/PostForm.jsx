@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Button, Input, Select, RTE } from '../index';
-import AppwriteService from '../../appwrite/conf';
+import apiService from '../../api/conf';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -17,7 +17,7 @@ function PostForm({ post }) {
   const userData   = useSelector((state) => state.auth.userData);
   const [uploading, setUploading] = useState(false);
   const [preview,   setPreview]   = useState(
-    post?.featuredImage ? AppwriteService.getFilePreview(post.featuredImage) : null
+    post?.featuredImage ? apiService.getFilePreview(post.featuredImage) : null
   );
 
   const { register, handleSubmit, watch, setValue, control, formState: { isSubmitting, errors } } =
@@ -54,7 +54,7 @@ function PostForm({ post }) {
 
       if (data.image?.[0]) {
         setUploading(true);
-        const uploaded = await AppwriteService.uploadFile(data.image[0]);
+        const uploaded = await apiService.uploadFile(data.image[0]);
         setUploading(false);
 
         if (!uploaded) {
@@ -62,7 +62,7 @@ function PostForm({ post }) {
           return;
         }
         // Delete old image if editing
-        if (post?.featuredImage) AppwriteService.deleteFile(post.featuredImage);
+        if (post?.featuredImage) apiService.deleteFile(post.featuredImage);
         featuredImage = uploaded.$id;
       }
 
@@ -76,11 +76,11 @@ function PostForm({ post }) {
       };
 
       if (post) {
-        const updated = await AppwriteService.updatePost(post.$id, payload);
+        const updated = await apiService.updatePost(post.$id, payload);
         if (updated) navigate(`/post/${updated.$id || post.$id}`);
         else alert('Failed to update post.');
       } else {
-        const created = await AppwriteService.createPost({
+        const created = await apiService.createPost({
           ...payload,
           userId:     userData?.$id    || 'unknown',
           authorName: userData?.name   || 'Contributor',

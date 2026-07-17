@@ -1,5 +1,6 @@
-// This file replaces Appwrite Auth with standard fetch calls to our Node backend
-const API_URL = 'http://localhost:5000/api';
+// This file replaces API Auth with standard fetch calls to our Node backend
+import config from '../config/config';
+const API_URL = config.backendUrl;
 
 export class AuthService {
 
@@ -58,7 +59,7 @@ export class AuthService {
             
             return await response.json();
         } catch (error) {
-            console.log("Appwrite serive :: getCurrentUser :: error", error);
+            console.log("API service :: getCurrentUser :: error", error);
             return null;
         }
     }
@@ -68,7 +69,7 @@ export class AuthService {
             localStorage.removeItem('token');
             return true;
         } catch (error) {
-            console.log("Appwrite serive :: logout :: error", error);
+            console.log("API service :: logout :: error", error);
         }
     }
 
@@ -84,7 +85,7 @@ export class AuthService {
             if (!response.ok) return { following: [], bookmarks: [], hidden: [] };
             return await response.json();
         } catch (error) {
-            console.log("Appwrite serive :: getPrefs :: error", error);
+            console.log("API service :: getPrefs :: error", error);
             return { following: [], bookmarks: [], hidden: [] };
         }
     }
@@ -99,7 +100,7 @@ export class AuthService {
                 body: JSON.stringify({ authorName })
             });
         } catch (error) {
-            console.log("Appwrite serive :: toggleFollow :: error", error);
+            console.log("API service :: toggleFollow :: error", error);
         }
     }
 
@@ -113,7 +114,7 @@ export class AuthService {
                 body: JSON.stringify({ postId })
             });
         } catch (error) {
-            console.log("Appwrite serive :: toggleBookmark :: error", error);
+            console.log("API service :: toggleBookmark :: error", error);
         }
     }
 
@@ -127,7 +128,7 @@ export class AuthService {
                 body: JSON.stringify({ postId })
             });
         } catch (error) {
-            console.log("Appwrite serive :: hidePost :: error", error);
+            console.log("API service :: hidePost :: error", error);
         }
     }
     async updateProfile(name, bio, interests) {
@@ -142,7 +143,7 @@ export class AuthService {
             if (!response.ok) return null;
             return await response.json();
         } catch (error) {
-            console.log("Appwrite serive :: updateProfile :: error", error);
+            console.log("API service :: updateProfile :: error", error);
             return null;
         }
     }

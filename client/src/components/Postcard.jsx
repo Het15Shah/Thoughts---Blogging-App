@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AppwriteService from '../appwrite/conf';
+import apiService from '../api/conf';
 
 const AVATAR_COLORS = [
   'bg-brand-orange', 'bg-brand-purple', 'bg-brand-pink',
@@ -108,7 +108,7 @@ function PostCard({
           <img
             src={
               featuredImage
-                ? AppwriteService.getFilePreview(featuredImage)
+                ? apiService.getFilePreview(featuredImage)
                 : `https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=400&q=60`
             }
             alt={title}

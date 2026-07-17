@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import AppwriteService from '../appwrite/conf';
-import authService from '../appwrite/auth';
+import apiService from '../api/conf';
+import authService from '../api/auth';
 import { Button, Container } from '../components';
 import parse from 'html-react-parser';
 import { useSelector } from 'react-redux';
@@ -19,7 +19,7 @@ export default function Post() {
 
   useEffect(() => {
     if (slug) {
-      AppwriteService.getPost(slug).then((p) => {
+      apiService.getPost(slug).then((p) => {
         if (p) setPost(p);
         else navigate('/');
       });
@@ -39,9 +39,9 @@ export default function Post() {
 
   const handleDelete = () => {
     if (!window.confirm('Delete this story permanently?')) return;
-    AppwriteService.deletePost(post.$id).then((ok) => {
+    apiService.deletePost(post.$id).then((ok) => {
       if (ok) {
-        if (post.featuredImage) AppwriteService.deleteFile(post.featuredImage);
+        if (post.featuredImage) apiService.deleteFile(post.featuredImage);
         navigate('/');
       }
     });
@@ -160,7 +160,7 @@ export default function Post() {
           {post.featuredImage && (
             <figure className="mb-10">
               <img
-                src={AppwriteService.getFilePreview(post.featuredImage)}
+                src={apiService.getFilePreview(post.featuredImage)}
                 alt={post.title}
                 className="w-full h-auto max-h-[520px] object-cover rounded-xl shadow-sm"
                 onError={(e) => { e.target.style.display = 'none'; }}
