@@ -1,5 +1,7 @@
 # 🌟 Thoughts - Modern Blogging Platform
 
+**🔗 Live Demo:** [https://thoughts-blogging-app.vercel.app/](https://thoughts-blogging-app.vercel.app/)
+
 A premium, full-stack blogging platform that lets users share stories, ideas, and expertise with the world. Built with a focus on high-end aesthetics and a seamless reading experience.
 
 ## ✨ Key Features
